@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from './components/Home'
 import Tabs from './components/Tabs'
+import Signup from './components/Signup';
+import Login from './components/Login';
 
 const Stack = createStackNavigator()
 
@@ -19,6 +21,23 @@ export default function App() {
             headerShown: false
           }}
         />
+
+        <Stack.Screen
+          name="sign up"
+          component={Signup}
+          options={{
+            headerShown: false
+          }}
+        />
+
+        <Stack.Screen
+          name="login"
+          component={Login}
+          options={{
+            headerShown: false
+          }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

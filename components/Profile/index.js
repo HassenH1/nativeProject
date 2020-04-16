@@ -1,19 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Alert } from 'react-native'
+import Signup from '../Signup'
 
-const Profile = () => {
+const Profile = (props) => {
+  // const { navigate } = props.navigation;
+
   return (
     <View style={styles.container}>
       <Button
         title="Sign Up"
         color="#f194ff"
-        onPress={() => Alert.alert('Button with adjusted color pressed')}
+        onPress={() => props.navigation.navigate("sign up")}
       />
 
       <Button
         title="Login"
         color="#f194ff"
-        onPress={() => Alert.alert('Button with adjusted color pressed')}
+        onPress={() => props.navigation.navigate("login")}
       />
     </View>
   )

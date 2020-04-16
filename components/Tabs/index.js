@@ -45,24 +45,6 @@ const Tabs = () => {
         component={Profile}
       />
 
-      {/* <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => pickFromCamera()}
-        theme={theme}
-      >
-        Camera
-      </Button> */}
-
-      {/* <Tab.Screen
-        name="Search"
-        component={Search}
-      />
-
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-      /> */}
     </Tab.Navigator>
   )
 }
