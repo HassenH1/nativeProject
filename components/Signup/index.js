@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginTop: 10,
-    color: "red"
+    color: "red",
+    width: WIDTH - 30
   }
 })
