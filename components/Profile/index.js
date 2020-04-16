@@ -1,7 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Alert } from 'react-native'
+import { StyleSheet, Text, View, Alert, Dimensions } from 'react-native'
 import Signup from '../Signup'
+import { Button } from 'react-native-elements';
 
+const WIDTH = Dimensions.get("window").width
 const Profile = (props) => {
   // const { navigate } = props.navigation;
 
@@ -11,12 +13,14 @@ const Profile = (props) => {
         title="Sign Up"
         color="#f194ff"
         onPress={() => props.navigation.navigate("sign up")}
+        style={styles.button}
       />
 
       <Button
         title="Login"
-        color="#f194ff"
+        // color="#f194ff"
         onPress={() => props.navigation.navigate("login")}
+        style={styles.button}
       />
     </View>
   )
@@ -32,9 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#00aeef',
-    borderColor: 'red',
-    borderWidth: 5,
-    borderRadius: 15,
+    marginTop: 20,
+    width: WIDTH -30
   }
 })
