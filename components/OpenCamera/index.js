@@ -36,10 +36,11 @@ const OpenCamera = (props) => {
 
   useEffect(() => {
     // pickFromCamera()
-    const unsubscribe = props.navigation.addListener('focus', () => {
+    const unsubscribe = props.navigation.addListener('tabPress', (e) => {
       pickFromCamera()
-      
+      e.preventDefault()
     })
+    return unsubscribe;
     console.log("Back here again yet?!")
   }, [props.navigation])
 
