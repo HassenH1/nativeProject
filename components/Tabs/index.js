@@ -38,7 +38,8 @@ const Tabs = () => {
         component={OpenCamera}
       />
 
-      
+
+
       <Tab.Screen
         name="Profile"
         component={Profile}

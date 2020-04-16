@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
 
-const OpenCamera = () => {
+const OpenCamera = (props) => {
+
   const pickFromCamera = async () => {
     const { granted } = await Permissions.askAsync(Permissions.CAMERA)
     if (granted) {
@@ -32,16 +35,28 @@ const OpenCamera = () => {
   }
 
   useEffect(() => {
-    pickFromCamera()
-    console.log("Back here again!!")
-  }, [])
+    // pickFromCamera()
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      pickFromCamera()
+      
+    })
+    console.log("Back here again yet?!")
+  }, [props.navigation])
 
   return (
-    <View>
+    <View style={styles.container}>
+      <Text>Took that Picture?</Text>
     </View>
   )
 }
 
 export default OpenCamera
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})
