@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 50,
-    fontWeight: "bold"
+    // fontWeight: "bold"
   },
   input: {
     height: 60,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginTop: 10,
-    color: "red",
+    // color: "red",
     width: WIDTH - 30
   },
 })
