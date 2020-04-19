@@ -2,26 +2,35 @@ import React from 'react'
 import { StyleSheet, Text, View, Alert, Dimensions } from 'react-native'
 import Signup from '../Signup'
 import { Button } from 'react-native-elements';
+import { useSelector, useDispatch } from 'react-redux'
 
 const WIDTH = Dimensions.get("window").width
 const Profile = (props) => {
-  // const { navigate } = props.navigation;
+  const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
+    return state
+  })
 
   return (
     <View style={styles.container}>
-      <Button
-        title="Sign Up"
-        color="#f194ff"
-        onPress={() => props.navigation.navigate("sign up")}
-        style={styles.button}
-      />
+      {
+        user === ""
+          ? <View>
+            <Button
+              title="Sign Up"
+              color="#f194ff"
+              onPress={() => props.navigation.navigate("sign up")}
+              style={styles.button}
+            />
 
-      <Button
-        title="Login"
-        // color="#f194ff"
-        onPress={() => props.navigation.navigate("login")}
-        style={styles.button}
-      />
+            <Button
+              title="Login"
+              // color="#f194ff"
+              onPress={() => props.navigation.navigate("login")}
+              style={styles.button}
+            />
+          </View>
+          : <View><Text>{user.username}</Text></View>
+      }
     </View>
   )
 }
@@ -37,6 +46,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    width: WIDTH -30
+    width: WIDTH - 30
   }
 })

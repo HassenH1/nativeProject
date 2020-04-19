@@ -9,9 +9,6 @@ const WIDTH = Dimensions.get('window').width;
 
 const Signup = (props) => {
   const dispatch = useDispatch()
-  const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
-    return state
-  })
 
   const [input, setInput] = useState({
     email: "",
@@ -30,13 +27,25 @@ const Signup = (props) => {
       return
     }
 
-    await (await fetch(`${url}/users/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(input)
-    })).json()
+    try {
+      const response = await fetch(`${url}/users/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(input)
+      })
+      console.log("<_---------------------before the await")
+      const user = await response.json()
+      console.log("<_---------------------After the await")
+      console.log(user, "<_------------------------------------user json thingy")
+      dispatch({ type: "ADDING", payload: input })
+      props.navigation.navigate("tabs")
+
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
