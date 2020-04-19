@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, View, Alert, Dimensions, Image } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Alert, Dimensions, Image, Modal } from 'react-native'
 import Signup from '../Signup'
 import { Button } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,6 +9,9 @@ import { Ionicons } from '@expo/vector-icons'
 const WIDTH = Dimensions.get("window").width
 const HEIGHT = Dimensions.get("window").height
 const Profile = (props) => {
+
+  const [deleteModal, setDeleteModal] = useState(false)
+
   const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
     return state
   })
@@ -60,10 +63,32 @@ const Profile = (props) => {
 
               <View>
                 <Button
-                  title="Delete Acc"
+                  title="Delete"
+                  onPress={() => setDeleteModal(true)}
                 />
               </View>
             </View>
+
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={deleteModal}
+              onRequestClose={() => setDeleteModal(false)}
+            >
+              <View style={styles.modalView}>
+                <View style={styles.modalButtonView}>
+                  <Text>Are you sure?</Text>
+                  <Button
+                    title="Yes"
+                    onPress={() => console.log("Delete the Account")}
+                  />
+                  <Button
+                    title="No"
+                    onPress={() => setDeleteModal(false)}
+                  />
+                </View>
+              </View>
+            </Modal>
 
           </View>
       }
@@ -83,5 +108,16 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     width: WIDTH - 30
+  },
+  modalView: {
+    position: "absolute",
+    bottom: 30,
+    width: "100%",
+    backgroundColor: "white",
+  },
+  modalButtonView: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10
   }
 })

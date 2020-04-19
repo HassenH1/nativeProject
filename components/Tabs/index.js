@@ -30,6 +30,9 @@ const Tabs = () => {
           iconName = 'md-pricetags'
         }
         return <Ionicons name={iconName} size={size} color={color} />
+      },
+      tabBarOptions: {
+        showLabel: false //label wont disappear for some reason
       }
     })}>
 
