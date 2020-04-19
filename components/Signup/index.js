@@ -36,10 +36,7 @@ const Signup = (props) => {
         },
         body: JSON.stringify(input)
       })
-      console.log("<_---------------------before the await")
       const user = await response.json()
-      console.log("<_---------------------After the await")
-      console.log(user, "<_------------------------------------user json thingy")
       dispatch({ type: "ADDING", payload: input })
       props.navigation.navigate("tabs")
 

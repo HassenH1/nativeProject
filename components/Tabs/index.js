@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons'
 import Home from '../Home'
 import Profile from '../Profile'
 import OpenCamera from '../OpenCamera';
+import Chat from '../Chat';
+import Selling from '../Selling';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +24,10 @@ const Tabs = () => {
           iconName = 'ios-camera'
         } else if (route.name == 'Search') {
           iconName = 'md-search'
+        } else if (route.name == 'Chat') {
+          iconName = 'ios-chatbubbles'
+        } else if (route.name == 'Selling') {
+          iconName = 'md-pricetags'
         }
         return <Ionicons name={iconName} size={size} color={color} />
       }
@@ -32,6 +38,10 @@ const Tabs = () => {
         component={Home}
       />
 
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+      />
 
       <Tab.Screen
         name="Camera"
@@ -39,6 +49,10 @@ const Tabs = () => {
       />
 
 
+      <Tab.Screen
+        name="Selling"
+        component={Selling}
+      />
 
       <Tab.Screen
         name="Profile"

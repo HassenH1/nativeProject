@@ -1,10 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View, Alert, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Alert, Dimensions, Image } from 'react-native'
 import Signup from '../Signup'
 import { Button } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons'
+
 
 const WIDTH = Dimensions.get("window").width
+const HEIGHT = Dimensions.get("window").height
 const Profile = (props) => {
   const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
     return state
@@ -14,7 +17,7 @@ const Profile = (props) => {
     <View style={styles.container}>
       {
         user === ""
-          ? <View>
+          ? <View style={styles.container}>
             <Button
               title="Sign Up"
               color="#f194ff"
@@ -29,7 +32,40 @@ const Profile = (props) => {
               style={styles.button}
             />
           </View>
-          : <View><Text>{user.username}</Text></View>
+          : <View style={{ width: WIDTH, height: HEIGHT }}>
+            <Image
+              style={{ height: "50%" }}
+              source={{ uri: "https://images.unsplash.com/photo-1548179504-07be08162fc3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" }}
+            />
+
+            <View style={{ alignItems: "center" }}>
+              <Image
+                style={{
+                  width: 140, height: 140, borderRadius: 140 / 2, marginTop: -60, borderWidth: 4, borderColor: "#efefef"
+                }}
+                source={{ uri: `https://images.unsplash.com/photo-1577975882846-431adc8c2009?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80` }}
+              />
+            </View>
+
+            <View style={{ alignItems: "center", margin: 15 }}>
+              <Text style={{ fontSize: 30 }}>{user.username}</Text>
+            </View>
+
+            <View style={{ alignItems: "center", justifyContent: "space-evenly", flexDirection: "row", marginLeft: 40, marginRight: 40 }}>
+              <View>
+                <Button
+                  title="Settings"
+                />
+              </View>
+
+              <View>
+                <Button
+                  title="Delete Acc"
+                />
+              </View>
+            </View>
+
+          </View>
       }
     </View>
   )
