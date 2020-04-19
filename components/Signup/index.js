@@ -1,17 +1,43 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Button } from 'react-native-elements';
+import { useSelector, useDispatch } from 'react-redux'
+import { url } from '../../ngrok/index'
 
 
 const WIDTH = Dimensions.get('window').width;
 
 const Signup = (props) => {
+  const dispatch = useDispatch()
+  const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
+    return state
+  })
 
   const [input, setInput] = useState({
     email: "",
     username: "",
     password: ""
   })
+  const [error, setError] = useState("")
+
+  const handleSubmit = async () => {
+    if (input.email === "" || input.username === "" || input.password === "") {
+      setError("All Fields Must be Completed")
+      setTimeout(() => {
+        setError("")
+        clearTimeout()
+      }, 5000)
+      return
+    }
+
+    await (await fetch(`${url}/users/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(input)
+    })).json()
+  }
 
   return (
     <KeyboardAvoidingView
@@ -32,6 +58,10 @@ const Signup = (props) => {
                 marginTop: 10
               }}
             />
+          </View>
+
+          <View>
+            <Text style={{ color: "red" }}>{error}</Text>
           </View>
 
           <View>
@@ -69,7 +99,7 @@ const Signup = (props) => {
             <Button
               title="Submit"
               style={styles.btn}
-              onPress={() => console.log("clicked")}
+              onPress={handleSubmit}
             />
           </View>
 

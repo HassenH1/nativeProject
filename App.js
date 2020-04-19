@@ -7,39 +7,55 @@ import Home from './components/Home'
 import Tabs from './components/Tabs'
 import Signup from './components/Signup';
 import Login from './components/Login';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import { reducer } from './reducer/reducer'
+import Profile from './components/Profile';
 
 const Stack = createStackNavigator()
 
+const store = createStore(reducer)
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen
-          name="tabs"
-          component={Tabs}
-          options={{
-            headerShown: false
-          }}
-        />
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator headerMode="none">
+          <Stack.Screen
+            name="tabs"
+            component={Tabs}
+            options={{
+              headerShown: false
+            }}
+          />
 
-        <Stack.Screen
-          name="sign up"
-          component={Signup}
-          options={{
-            headerShown: false
-          }}
-        />
+          <Stack.Screen
+            name="sign up"
+            component={Signup}
+            options={{
+              headerShown: false
+            }}
+          />
 
-        <Stack.Screen
-          name="login"
-          component={Login}
-          options={{
-            headerShown: false
-          }}
-        />
+          <Stack.Screen
+            name="login"
+            component={Login}
+            options={{
+              headerShown: false
+            }}
+          />
 
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="profile"
+            component={Profile}
+            options={{
+              headerShown: false
+            }}
+          />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
