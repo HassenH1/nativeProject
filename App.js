@@ -53,6 +53,14 @@ export default function App() {
             }}
           />
 
+          <Stack.Screen
+            name="home"
+            component={Home}
+            options={{
+              headerShown: false
+            }}
+          />
+
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
