@@ -85,15 +85,17 @@ const OpenCamera = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data, "<-------------------------wahts this here dude?")
-        setImg(data.url)
+        setImg(data)
       })
-    fetch(`${url}/`, {
+    console.log(user, "<----------------------------who is the user")
+    fetch(`${url}/post/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json'
       },
       body: JSON.stringify({
+        ...user.email,
         img,
         name, 
         desc,
