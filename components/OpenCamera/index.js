@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions, Alert, Image } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Alert, Image, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import 'react-native-gesture-handler';
@@ -85,37 +85,51 @@ const OpenCamera = (props) => {
       </View>
       {
         img !== ""
-          ? <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
-            <View>
-              <Ionicons
-                name="ios-trash"
-                size={40}
-                style={styles.trash}
-                onPress={() => setImg("")}
+          ? <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            style={styles.container}
+          >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
+              <View>
+                <Ionicons
+                  name="ios-trash"
+                  size={40}
+                  style={styles.trash}
+                  onPress={() => setImg("")}
+                />
+              </View>
+              <Image
+                source={{ uri: img }}
+                style={styles.images}
               />
+              <View>
+                <TextInput
+                  placeholder="Name"
+                  style={styles.input}
+                  onChangeText={text => setName(text)}
+                  value={name}
+                />
+              </View>
+              <View>
+                <TextInput
+                  placeholder="Description"
+                  multiline={true}
+                  numberOfLines={8}
+                  onChangeText={(text) => setDesc(text)}
+                  value={desc}
+                  style={{ height: 140, ...styles.input}}
+                />
+              </View>
+              <View>
+                <Button
+                  title="Submit"
+                  onPress={() => console.log("submit to database")}
+                />
+              </View>
             </View>
-            <Image
-              source={{ uri: img }}
-              style={styles.images}
-            />
-            <View>
-              <TextInput
-                placeholder="Name"
-                style={styles.input}
-                onChangeText={text => setName(text)}
-                value={name}
-              />
-            </View>
-            <View>
-              <TextInput
-                multiline={true}
-                numberOfLines={4}
-                onChangeText={(text) => setDesc(text)}
-                value={desc}
-                style={styles.input}
-              />
-            </View>
-          </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
           : <View>
             <Button
               title="Take Photo"
@@ -154,7 +168,6 @@ const styles = StyleSheet.create({
     height: HEIGHT - 520,
     borderColor: 'black',
     zIndex: 1,
-    // position: "absolute"
   },
   trash: {
     position: "absolute",
