@@ -1,8 +1,6 @@
 
 const initialState = {
-  user: "",
-  loading: false,
-  auth: false
+  user: ""
 }
 
 export const reducer = (state = initialState, action) => {
@@ -12,11 +10,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload
-      }
-    case "LOADING":
-      return {
-        ...state,
-        loading: action.payload
       }
     case "GET_USER":
       console.log(action.payload, "<-------------getting user")
@@ -37,11 +30,7 @@ export const reducer = (state = initialState, action) => {
         .catch((err) => {
           console.log(err)
         })
-    case "AUTH":
-      return {
-        ...state,
-        auth: action.payload
-      }
+      default:
+        return state
   }
-  return state
 }

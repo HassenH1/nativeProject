@@ -14,7 +14,7 @@ const WIDTH = Dimensions.get("window").width
 const HEIGHT = Dimensions.get("window").height
 const OpenCamera = () => {
 
-  const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
+  const { user } = useSelector((state) => { /////////////////////< accesses the redux state
     return state
   })
 

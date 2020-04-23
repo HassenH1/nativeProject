@@ -12,7 +12,7 @@ const Profile = (props) => {
 
   const [deleteModal, setDeleteModal] = useState(false)
 
-  const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
+  const { user } = useSelector((state) => { /////////////////////< accesses the redux state
     return state
   })
 
@@ -35,7 +35,7 @@ const Profile = (props) => {
               style={styles.button}
             />
           </View>
-          
+
           : <View style={{ width: WIDTH, height: HEIGHT }}>
             <Image
               style={{ height: "50%" }}
