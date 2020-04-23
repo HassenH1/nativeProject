@@ -85,14 +85,14 @@ const OpenCamera = () => {
             >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
-                {/* <View>
+                <View>
                   <Ionicons
                     name="ios-trash"
-                    size={40}
+                    size={32}
                     style={styles.trash}
                     onPress={() => setImg("")}
                   />
-                </View> */}
+                </View>
                 <Image
                   source={{ uri: img }}
                   style={styles.images}
@@ -190,13 +190,13 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     zIndex: 1,
   },
-  // trash: {
-  //   position: "absolute",
-  //   bottom: -310,
-  //   right: -18,
-  //   color: "red",
-  //   transform: [{ rotate: "30deg" }]
-  // },
+  trash: {
+    position: "absolute",
+    top: 10,
+    right: 137,
+    color: "red",
+    transform: [{ rotate: "0deg" }]
+  },
   heading: {
     alignItems: "center",
     marginTop: Constants.statusBarHeight,

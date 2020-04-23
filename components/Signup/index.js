@@ -39,7 +39,6 @@ const Signup = (props) => {
       const user = await response.json()
       dispatch({ type: "ADDING", payload: input })
       props.navigation.navigate("tabs")
-
     } catch (err) {
       console.log(err)
     }

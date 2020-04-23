@@ -30,7 +30,6 @@ export const reducer = (state = initialState, action) => {
         .catch((err) => {
           console.log(err)
         })
-      default:
-        return state
   }
+  return state
 }
