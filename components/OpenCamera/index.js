@@ -74,7 +74,7 @@ const OpenCamera = () => {
 
   const toDatabase = () => {
     const data = new FormData()
-    data.append("File", img)
+    data.append("file", img)
     data.append("upload_preset", "my_project")
     data.append("cloud_name", "hassen")
     fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
@@ -83,7 +83,7 @@ const OpenCamera = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setImg(data.url)
+        console.log(data, "<-------------------------wahts this here dude?")
       })
   }
 
