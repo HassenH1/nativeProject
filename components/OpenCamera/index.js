@@ -80,9 +80,9 @@ const OpenCamera = () => {
       {
         img !== ""
           ? <KeyboardAvoidingView
-              behavior={Platform.OS == "ios" ? "padding" : "height"}
-              style={styles.keyboard}
-            >
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            style={styles.keyboard}
+          >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
                 <View>
@@ -151,11 +151,11 @@ const OpenCamera = () => {
               color="black"
               onPress={() => pickFromGallery()}
               style={styles.button}
-            // disabled={
-            //   user !== ""
-            //     ? false
-            //     : true
-            // }
+              disabled={
+                user !== ""
+                  ? false
+                  : true
+              }
             />
             <Text style={{ color: "red", textAlign: "center" }}>
               {
