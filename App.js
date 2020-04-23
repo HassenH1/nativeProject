@@ -11,6 +11,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { reducer } from './reducer/reducer'
 import Profile from './components/Profile';
+import Setting from './components/Setting';
 
 const Stack = createStackNavigator()
 
@@ -56,6 +57,14 @@ export default function App() {
           <Stack.Screen
             name="home"
             component={Home}
+            options={{
+              headerShown: false
+            }}
+          />
+
+          <Stack.Screen
+            name="setting"
+            component={Setting}
             options={{
               headerShown: false
             }}

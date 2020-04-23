@@ -4,6 +4,7 @@ import Signup from '../Signup'
 import { Button } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
+import Setting from '../Setting'
 
 
 const WIDTH = Dimensions.get("window").width
@@ -59,6 +60,7 @@ const Profile = (props) => {
               <View>
                 <Button
                   title="Settings"
+                  onPress={() => props.navigation.navigate("setting")}
                 />
               </View>
 
