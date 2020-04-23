@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native'
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import 'react-native-gesture-handler';
@@ -10,6 +10,7 @@ import { Button } from 'react-native-elements';
 const WIDTH = Dimensions.get("window").width
 const HEIGHT = Dimensions.get("window").height
 const OpenCamera = (props) => {
+  const [img, setImg] = useState("")
 
   const pickFromCamera = async () => {
     const { granted } = await Permissions.askAsync(Permissions.CAMERA)
@@ -57,6 +58,7 @@ const OpenCamera = (props) => {
 
   const handleUpload = (image) => {
     console.log(image, "<--------------------image")
+    setImg(image)
   }
 
   // useEffect(() => {
@@ -71,21 +73,27 @@ const OpenCamera = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.container}>
-        <Button
-          title="Take Photo"
-          color="#f194ff"
-          onPress={() => pickFromCamera()}
-          style={styles.button}
-        />
+      {
+        img !== ""
+          ? <View>
+            <Text>Hello world</Text>
+          </View>
+          : <View>
+            <Button
+              title="Take Photo"
+              color="#f194ff"
+              onPress={() => pickFromCamera()}
+              style={styles.button}
+            />
 
-        <Button
-          title="Select Photo"
-          // color="#f194ff"
-          onPress={() => pickFromGallery()}
-          style={styles.button}
-        />
-      </View>
+            <Button
+              title="Select Photo"
+              color="black"
+              onPress={() => pickFromGallery()}
+              style={styles.button}
+            />
+          </View>
+      }
     </View>
   )
 }
@@ -101,6 +109,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
-    width: WIDTH - 30
+    width: WIDTH - 30,
   }
 })
