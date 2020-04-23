@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 import Constants from 'expo-constants'
 import { TextInput } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux'
+import { url } from '../../ngrok/index'
 
 const WIDTH = Dimensions.get("window").width
 const HEIGHT = Dimensions.get("window").height
@@ -84,27 +85,22 @@ const OpenCamera = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data, "<-------------------------wahts this here dude?")
+        setImg(data.url)
       })
+    fetch(`${url}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        img,
+        name, 
+        desc,
+        price
+      })
+    })
   }
-
-  //for image only
-  // const data = new FormData()
-  // data.append("file", image)
-  // data.append('upload_preset', 'employeeApp')
-  // data.append('cloud_name', 'hassen')
-
-  // fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
-  //   method: "POST",
-  //   body: data,
-  // })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     setPicture(data.url)
-  //     setModal(false)
-  //   })
-  //   .catch((err) => {
-  //     Alert.alert("Error while uploading")
-  //   })
 
   return (
     <View style={styles.container}>
