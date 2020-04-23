@@ -33,12 +33,13 @@ const OpenCamera = () => {
         quality: 0.5 // 1 is full quality of picture
       })
       if (!data.cancelled) {
+        console.log("<-----------------------inside if in camera")
         let newFile = {
           uri: data.uri,
           type: `test/${data.uri.split(".")[1]}`,
           name: `test.${data.uri.split(".")[1]}`,
         }
-        handleUpload(newFile)
+        setImg(newFile)
       }
     } else {
       Alert.alert("You need to give permission to work")
@@ -60,16 +61,42 @@ const OpenCamera = () => {
           type: `test/${data.uri.split(".")[1]}`,
           name: `test/${data.uri.split(".")[1]}`,
         }
-        handleUpload(newFile)
+        setImg(newFile)
       }
     } else {
       Alert.alert("You need to give permission to work")
     }
   }
 
-  const handleUpload = (image) => {
-    setImg(image.uri)
+  // const handleUpload = (image) => {
+  //   setImg(image.uri)
+  // }
+
+  const toDatabase = () => {
+    const data = new FormData()
+    data.append("File", img)
+    data.append("upload_preset", "my_project")
+    data.append("cloud_name", "hassen")
   }
+
+  //for image only
+  // const data = new FormData()
+  // data.append("file", image)
+  // data.append('upload_preset', 'employeeApp')
+  // data.append('cloud_name', 'hassen')
+
+  // fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
+  //   method: "POST",
+  //   body: data,
+  // })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     setPicture(data.url)
+  //     setModal(false)
+  //   })
+  //   .catch((err) => {
+  //     Alert.alert("Error while uploading")
+  //   })
 
   return (
     <View style={styles.container}>
@@ -86,15 +113,15 @@ const OpenCamera = () => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
                 <View>
-                  <Ionicons
+                  {/* <Ionicons
                     name="ios-trash"
                     size={32}
                     style={styles.trash}
                     onPress={() => setImg("")}
-                  />
+                  /> */}
                 </View>
                 <Image
-                  source={{ uri: img }}
+                  source={{ uri: img.uri }}
                   style={styles.images}
                 />
                 <View>
@@ -127,7 +154,7 @@ const OpenCamera = () => {
                 <View>
                   <Button
                     title="Submit"
-                    onPress={() => console.log("submit to database")}
+                    onPress={() => toDatabase()}
                   />
                 </View>
               </View>
