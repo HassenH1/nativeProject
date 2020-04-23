@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Alert, Image } from 'react-native'
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import 'react-native-gesture-handler';
@@ -43,12 +43,14 @@ const OpenCamera = (props) => {
         aspect: [1, 1],
         quality: 0.5 // 1 is full quality of picture
       })
+      console.log(data, "<-----------------------------the data is here?")
       if (!data.cancelled) {
         let newFile = {
           uri: data.uri,
           type: `test/${data.uri.split(".")[1]}`,
           name: `test/${data.uri.split(".")[1]}`,
         }
+        console.log(newFile, "<----------------------------new file is here")
         handleUpload(newFile)
       }
     } else {
@@ -58,7 +60,7 @@ const OpenCamera = (props) => {
 
   const handleUpload = (image) => {
     console.log(image, "<--------------------image")
-    setImg(image)
+    setImg(image.uri)
   }
 
   // useEffect(() => {
@@ -76,23 +78,26 @@ const OpenCamera = (props) => {
       {
         img !== ""
           ? <View>
-            <Text>Hello world</Text>
-          </View>
+              <Image
+                source={{ uri: img}}
+                style={styles.images}
+              />
+            </View>
           : <View>
-            <Button
-              title="Take Photo"
-              color="#f194ff"
-              onPress={() => pickFromCamera()}
-              style={styles.button}
-            />
+              <Button
+                title="Take Photo"
+                color="#f194ff"
+                onPress={() => pickFromCamera()}
+                style={styles.button}
+              />
 
-            <Button
-              title="Select Photo"
-              color="black"
-              onPress={() => pickFromGallery()}
-              style={styles.button}
-            />
-          </View>
+              <Button
+                title="Select Photo"
+                color="black"
+                onPress={() => pickFromGallery()}
+                style={styles.button}
+              />
+            </View>
       }
     </View>
   )
@@ -110,5 +115,12 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     width: WIDTH - 30,
-  }
+  },
+  images: {
+    width: WIDTH - 100,
+    height: HEIGHT - 520,
+    borderColor: 'black',
+    // borderWidth: 1,
+    // marginHorizontal: 3
+  },
 })
