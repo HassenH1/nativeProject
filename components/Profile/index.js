@@ -35,6 +35,7 @@ const Profile = (props) => {
               style={styles.button}
             />
           </View>
+          
           : <View style={{ width: WIDTH, height: HEIGHT }}>
             <Image
               style={{ height: "50%" }}

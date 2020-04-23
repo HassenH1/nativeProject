@@ -53,14 +53,12 @@ const OpenCamera = () => {
         aspect: [1, 1],
         quality: 0.5 // 1 is full quality of picture
       })
-      console.log(data, "<-----------------------------the data is here?")
       if (!data.cancelled) {
         let newFile = {
           uri: data.uri,
           type: `test/${data.uri.split(".")[1]}`,
           name: `test/${data.uri.split(".")[1]}`,
         }
-        console.log(newFile, "<----------------------------new file is here")
         handleUpload(newFile)
       }
     } else {
@@ -69,7 +67,6 @@ const OpenCamera = () => {
   }
 
   const handleUpload = (image) => {
-    console.log(image, "<--------------------image")
     setImg(image.uri)
   }
 
@@ -150,6 +147,13 @@ const OpenCamera = () => {
                   : true
               }
             />
+            <Text style={{ color: "red", textAlign: "center"}}>
+              {
+                user !== ""
+                  ? ""
+                  : "Must be signed in to use the Camera" 
+              }
+              </Text>
           </View>
       }
 
