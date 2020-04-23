@@ -23,6 +23,7 @@ const OpenCamera = () => {
   const [name, setName] = useState("")
   const [desc, setDesc] = useState("")
   const [price, setPrice] = useState("")
+  const [dbImage, setDBImage] = useState("")
 
   const pickFromCamera = async () => {
     const { granted } = await Permissions.askAsync(Permissions.CAMERA)
@@ -34,7 +35,6 @@ const OpenCamera = () => {
         quality: 0.5 // 1 is full quality of picture
       })
       if (!data.cancelled) {
-        console.log("<-----------------------inside if in camera")
         let newFile = {
           uri: data.uri,
           type: `test/${data.uri.split(".")[1]}`,
@@ -73,35 +73,41 @@ const OpenCamera = () => {
   //   setImg(image.uri)
   // }
 
-  const toDatabase = () => {
-    const data = new FormData()
+  const toDatabase = async () => {
+    const data = await new FormData()
     data.append("file", img)
     data.append("upload_preset", "my_project")
     data.append("cloud_name", "hassen")
-    fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
-      method: "POST",
-      body: data
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data, "<-------------------------wahts this here dude?")
-        setImg(data)
+
+    try {
+      const cloud = await fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
+        method: "POST",
+        body: data
       })
-    console.log(user, "<----------------------------who is the user")
-    fetch(`${url}/post/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        ...user.email,
-        img,
-        name, 
-        desc,
-        price
+      const resp = await cloud.json()
+      setDBImage(resp.url)
+    } catch (err) {
+      console.log(err)
+    }
+
+    try {
+      const d = fetch(`${url}/post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...user.email,
+          dbImage,
+          name,
+          desc,
+          price
+        })
       })
-    })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
