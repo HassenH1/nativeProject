@@ -8,11 +8,16 @@ import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons'
 import Constants from 'expo-constants'
 import { TextInput } from 'react-native-gesture-handler';
-
+import { useSelector, useDispatch } from 'react-redux'
 
 const WIDTH = Dimensions.get("window").width
 const HEIGHT = Dimensions.get("window").height
-const OpenCamera = (props) => {
+const OpenCamera = () => {
+
+  const { auth, user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
+    return state
+  })
+
   const [img, setImg] = useState("")
   const [name, setName] = useState("")
   const [desc, setDesc] = useState("")
@@ -68,21 +73,12 @@ const OpenCamera = (props) => {
     setImg(image.uri)
   }
 
-  // useEffect(() => {
-  //   // pickFromCamera()
-  //   const unsubscribe = props.navigation.addListener('tabPress', (e) => {
-  //     pickFromCamera()
-  //     e.preventDefault()
-  //   })
-  //   return unsubscribe;
-  //   console.log("Back here again yet?!")
-  // }, [props.navigation])
-
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
         <Text style={{ fontWeight: "bold", fontSize: 40 }}>Post an Item</Text>
       </View>
+
       {
         img !== ""
           ? <KeyboardAvoidingView
@@ -90,44 +86,44 @@ const OpenCamera = (props) => {
             style={styles.container}
           >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
-              <View>
-                <Ionicons
-                  name="ios-trash"
-                  size={40}
-                  style={styles.trash}
-                  onPress={() => setImg("")}
+              <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
+                <View>
+                  <Ionicons
+                    name="ios-trash"
+                    size={40}
+                    style={styles.trash}
+                    onPress={() => setImg("")}
+                  />
+                </View>
+                <Image
+                  source={{ uri: img }}
+                  style={styles.images}
                 />
+                <View>
+                  <TextInput
+                    placeholder="Name"
+                    style={styles.input}
+                    onChangeText={text => setName(text)}
+                    value={name}
+                  />
+                </View>
+                <View>
+                  <TextInput
+                    placeholder="Description"
+                    multiline={true}
+                    numberOfLines={8}
+                    onChangeText={(text) => setDesc(text)}
+                    value={desc}
+                    style={{ height: 140, ...styles.input }}
+                  />
+                </View>
+                <View>
+                  <Button
+                    title="Submit"
+                    onPress={() => console.log("submit to database")}
+                  />
+                </View>
               </View>
-              <Image
-                source={{ uri: img }}
-                style={styles.images}
-              />
-              <View>
-                <TextInput
-                  placeholder="Name"
-                  style={styles.input}
-                  onChangeText={text => setName(text)}
-                  value={name}
-                />
-              </View>
-              <View>
-                <TextInput
-                  placeholder="Description"
-                  multiline={true}
-                  numberOfLines={8}
-                  onChangeText={(text) => setDesc(text)}
-                  value={desc}
-                  style={{ height: 140, ...styles.input}}
-                />
-              </View>
-              <View>
-                <Button
-                  title="Submit"
-                  onPress={() => console.log("submit to database")}
-                />
-              </View>
-            </View>
             </TouchableWithoutFeedback>
           </KeyboardAvoidingView>
           : <View>
@@ -136,6 +132,11 @@ const OpenCamera = (props) => {
               color="#f194ff"
               onPress={() => pickFromCamera()}
               style={styles.button}
+              disabled={
+                user !== ""
+                  ? false
+                  : true
+              }
             />
 
             <Button
@@ -143,9 +144,15 @@ const OpenCamera = (props) => {
               color="black"
               onPress={() => pickFromGallery()}
               style={styles.button}
+              disabled={
+                user !== ""
+                  ? false
+                  : true
+              }
             />
           </View>
       }
+
     </View>
   )
 }

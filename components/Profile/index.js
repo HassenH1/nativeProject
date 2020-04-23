@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    marginTop: 20,
+    marginTop: 10,
     width: WIDTH - 30
   },
   modalView: {
