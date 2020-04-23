@@ -60,7 +60,7 @@ const Profile = (props) => {
               <View>
                 <Button
                   title="Settings"
-                  onPress={() => props.navigation.navigate("setting")}
+                  onPress={() => props.navigation.navigate("Setting")}
                 />
               </View>
 

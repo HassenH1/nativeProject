@@ -21,7 +21,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator headerMode="none">
+        <Stack.Navigator>
           <Stack.Screen
             name="tabs"
             component={Tabs}
@@ -63,10 +63,11 @@ export default function App() {
           />
 
           <Stack.Screen
-            name="setting"
+            name="Setting"
             component={Setting}
             options={{
-              headerShown: false
+              headerShown: true,
+              headerBackTitle: "Profile"
             }}
           />
 
