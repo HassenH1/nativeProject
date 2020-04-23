@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions, Alert, Image, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Alert, Image, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native'
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import 'react-native-gesture-handler';
@@ -21,6 +21,7 @@ const OpenCamera = () => {
   const [img, setImg] = useState("")
   const [name, setName] = useState("")
   const [desc, setDesc] = useState("")
+  const [price, setPrice] = useState("")
 
   const pickFromCamera = async () => {
     const { granted } = await Permissions.askAsync(Permissions.CAMERA)
@@ -79,19 +80,19 @@ const OpenCamera = () => {
       {
         img !== ""
           ? <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
-            style={styles.container}
-          >
+              behavior={Platform.OS == "ios" ? "padding" : "height"}
+              style={styles.keyboard}
+            >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
-                <View>
+                {/* <View>
                   <Ionicons
                     name="ios-trash"
                     size={40}
                     style={styles.trash}
                     onPress={() => setImg("")}
                   />
-                </View>
+                </View> */}
                 <Image
                   source={{ uri: img }}
                   style={styles.images}
@@ -102,6 +103,15 @@ const OpenCamera = () => {
                     style={styles.input}
                     onChangeText={text => setName(text)}
                     value={name}
+                  />
+                </View>
+                <View>
+                  <TextInput
+                    placeholder="0"
+                    style={styles.input}
+                    onChangeText={text => setPrice(text)}
+                    value={price}
+                    keyboardType="numeric"
                   />
                 </View>
                 <View>
@@ -141,19 +151,19 @@ const OpenCamera = () => {
               color="black"
               onPress={() => pickFromGallery()}
               style={styles.button}
-              disabled={
-                user !== ""
-                  ? false
-                  : true
-              }
+            // disabled={
+            //   user !== ""
+            //     ? false
+            //     : true
+            // }
             />
-            <Text style={{ color: "red", textAlign: "center"}}>
+            <Text style={{ color: "red", textAlign: "center" }}>
               {
                 user !== ""
                   ? ""
-                  : "Must be signed in to use the Camera" 
+                  : "Must be signed in to use the Camera"
               }
-              </Text>
+            </Text>
           </View>
       }
 
@@ -180,13 +190,13 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     zIndex: 1,
   },
-  trash: {
-    position: "absolute",
-    bottom: -310,
-    right: -18,
-    color: "red",
-    transform: [{ rotate: "30deg" }]
-  },
+  // trash: {
+  //   position: "absolute",
+  //   bottom: -310,
+  //   right: -18,
+  //   color: "red",
+  //   transform: [{ rotate: "30deg" }]
+  // },
   heading: {
     alignItems: "center",
     marginTop: Constants.statusBarHeight,
@@ -207,4 +217,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 15,
   },
+  keyboard: {
+    flex: 1,
+    justifyContent: "space-evenly",
+    marginTop: 0
+  }
 })
