@@ -85,12 +85,8 @@ const OpenCamera = () => {
         body: data
       })
       const resp = await cloud.json()
-      setDBImage(resp.url)
-    } catch (err) {
-      console.log(err)
-    }
+      await setDBImage(resp.url)
 
-    try {
       const d = fetch(`${url}/post`, {
         method: "POST",
         headers: {
@@ -108,6 +104,12 @@ const OpenCamera = () => {
     } catch (err) {
       console.log(err)
     }
+
+    // try {
+
+    // } catch (err) {
+    //   console.log(err)
+    // }
   }
 
   return (
