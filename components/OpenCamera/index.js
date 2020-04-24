@@ -41,6 +41,7 @@ const OpenCamera = () => {
           name: `test.${data.uri.split(".")[1]}`,
         }
         setImg(newFile)
+        handleImageUpload(newFile)
       }
     } else {
       Alert.alert("You need to give permission to work")
@@ -63,42 +64,31 @@ const OpenCamera = () => {
           name: `test/${data.uri.split(".")[1]}`,
         }
         setImg(newFile)
+        handleImageUpload(newFile)
       }
     } else {
       Alert.alert("You need to give permission to work")
     }
   }
 
-  const toDatabase = async () => {
+  const handleImageUpload = async (image) => {
     const data = await new FormData()
-    data.append("file", img)
+    data.append("file", image)
     data.append("upload_preset", "my_project")
     data.append("cloud_name", "hassen")
 
-    // try {
-    //   const cloud = await fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
-    //     method: "POST",
-    //     body: data
-    //   })
-    //   const resp = await cloud.json()
-    //   console.log(resp, "<--------------------------is this empty?")
-    //   submitToDB(resp.url)
-    // } catch (err) {
-    //   console.log(err)
-    // }
     fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
       method: "POST",
       body: data
     })
       .then((resp) => resp.json())
       .then((res) => {
-        submitToDB(res.url)
+        // submitToDB(res.url)
+        setDBImage(res.url)
       })
   }
 
-  const submitToDB = async (respUrl) => {
-    console.log("Does it hit here at least <-----------------------------------------")
-    setDBImage(respUrl)
+  const submitToDB = async () => {
     console.log(dbImage, "<-------------------------------------------is the link even here?")
     try {
       const d = await fetch(`${url}/post`, {
@@ -179,7 +169,7 @@ const OpenCamera = () => {
                 <View>
                   <Button
                     title="Submit"
-                    onPress={() => toDatabase()}
+                    onPress={() => submitToDB()}
                   />
                 </View>
               </View>
