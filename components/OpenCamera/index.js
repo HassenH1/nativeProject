@@ -69,10 +69,6 @@ const OpenCamera = () => {
     }
   }
 
-  // const handleUpload = (image) => {
-  //   setImg(image.uri)
-  // }
-
   const toDatabase = async () => {
     const data = await new FormData()
     data.append("file", img)

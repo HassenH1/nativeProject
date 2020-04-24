@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Button } from 'react-native-elements';
 import { url } from '../../ngrok/index'
+import { useDispatch } from 'react-redux'
 
 const WIDTH = Dimensions.get('window').width;
 
 const Login = (props) => {
+  const dispatch = useDispatch()
 
   const [input, setInput] = useState({
     email: "",
@@ -33,7 +35,8 @@ const Login = (props) => {
         body: JSON.stringify(input)
       })
       const user = await response.json()
-      dispatch({ type: "ADDING", payload: input })
+      console.log(user)
+      dispatch({ type: "ADDING", payload: user })
       props.navigation.navigate("tabs")
     } catch (err) {
       console.log(err)

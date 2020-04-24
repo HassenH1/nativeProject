@@ -14,7 +14,6 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  res.send('login');
   //need to finish this route as well
   try {
     const get = await Users.findOne({ "email": req.body.email, "password": req.body.password })
