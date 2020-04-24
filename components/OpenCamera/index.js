@@ -75,18 +75,25 @@ const OpenCamera = () => {
     data.append("upload_preset", "my_project")
     data.append("cloud_name", "hassen")
 
-    try {
-      const cloud = await fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
-        method: "POST",
-        body: data
+    // try {
+    //   const cloud = await fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
+    //     method: "POST",
+    //     body: data
+    //   })
+    //   const resp = await cloud.json()
+    //   console.log(resp, "<--------------------------is this empty?")
+    //   submitToDB(resp.url)
+    // } catch (err) {
+    //   console.log(err)
+    // }
+    fetch("https://api.cloudinary.com/v1_1/hassen/image/upload", {
+      method: "POST",
+      body: data
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        submitToDB(res.url)
       })
-      const resp = await cloud.json()
-      console.log(resp, "<--------------------------is this empty?")
-      // setDBImage(resp.url)
-      submitToDB(resp.url)
-    } catch (err) {
-      console.log(err)
-    }
   }
 
   const submitToDB = async (respUrl) => {
