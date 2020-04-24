@@ -13,7 +13,7 @@ import { url } from '../../ngrok/index'
 
 const WIDTH = Dimensions.get("window").width
 const HEIGHT = Dimensions.get("window").height
-const OpenCamera = () => {
+const OpenCamera = (props) => {
 
   const { user } = useSelector((state) => { /////////////////////< accesses the redux state
     return state
@@ -24,6 +24,7 @@ const OpenCamera = () => {
   const [desc, setDesc] = useState("")
   const [price, setPrice] = useState("")
   const [dbImage, setDBImage] = useState("")
+  const [error, setError] = useState("")
 
   const pickFromCamera = async () => {
     const { granted } = await Permissions.askAsync(Permissions.CAMERA)
@@ -104,9 +105,25 @@ const OpenCamera = () => {
           price
         })
       })
+      const dJson = await d.json()
+      if(dJson.message === "success"){
+        setDBImage("")
+        setDesc("")
+        setImg("")
+        setName("")
+        setPrice("")
+        props.navigation.navigate("tabs")
+      } else {
+        setError("something went wrong")
+        setTimeout(() => {
+          setError("")
+          clearTimeout()
+        }, 4000)
+      }
     } catch (err) {
       console.log(err)
     }
+
   }
 
   return (
@@ -123,6 +140,7 @@ const OpenCamera = () => {
           >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
+                  <Text style={{color: "red", textAlign: "center"}}>{error}</Text>
                 <View>
                   <Ionicons
                     name="ios-trash"

@@ -23,7 +23,9 @@ router.post('/', async (req, res, next) => {
         message: "Not saved"
       })
     }
-    console.log("successfully saved")
+    res.send({
+      message: "success"
+    })
   })
 });
 
