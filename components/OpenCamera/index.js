@@ -96,6 +96,7 @@ const OpenCamera = () => {
   const submitToDB = async (respUrl) => {
     console.log("Does it hit here at least <-----------------------------------------")
     setDBImage(respUrl)
+    console.log(dbImage, "<-------------------------------------------is the link even here?")
     try {
       const d = await fetch(`${url}/post`, {
         method: "POST",
