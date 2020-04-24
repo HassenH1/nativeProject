@@ -85,12 +85,17 @@ const OpenCamera = () => {
         body: data
       })
       const resp = await cloud.json()
-      await setDBImage(resp.url)
-
+      console.log(resp, "<--------------------------is this empty?")
+      // setDBImage(resp.url)
+      submitToDB(resp.url)
     } catch (err) {
       console.log(err)
     }
+  }
 
+  const submitToDB = async (respUrl) => {
+    console.log("Does it hit here at least <-----------------------------------------")
+    setDBImage(respUrl)
     try {
       const d = await fetch(`${url}/post`, {
         method: "POST",
@@ -106,7 +111,9 @@ const OpenCamera = () => {
           price
         })
       })
-      const dJson = await d.json()
+      console.log("does it ever end here <---------------------------------------------")
+      // const dJson = await d.json()
+      console.log("<--------------------------------------------------this cant be empty?")
     } catch (err) {
       console.log(err)
     }
