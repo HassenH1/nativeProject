@@ -89,7 +89,6 @@ const OpenCamera = () => {
   }
 
   const submitToDB = async () => {
-    console.log(dbImage, "<-------------------------------------------is the link even here?")
     try {
       const d = await fetch(`${url}/post`, {
         method: "POST",
@@ -98,16 +97,13 @@ const OpenCamera = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          ...user.email,
-          dbImage,
+          email: user.email,
+          image: dbImage,
           name,
           desc,
           price
         })
       })
-      console.log("does it ever end here <---------------------------------------------")
-      // const dJson = await d.json()
-      console.log("<--------------------------------------------------this cant be empty?")
     } catch (err) {
       console.log(err)
     }
