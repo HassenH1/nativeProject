@@ -87,7 +87,12 @@ const OpenCamera = () => {
       const resp = await cloud.json()
       await setDBImage(resp.url)
 
-      const d = fetch(`${url}/post`, {
+    } catch (err) {
+      console.log(err)
+    }
+
+    try {
+      const d = await fetch(`${url}/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,15 +106,10 @@ const OpenCamera = () => {
           price
         })
       })
+      const dJson = await d.json()
     } catch (err) {
       console.log(err)
     }
-
-    // try {
-
-    // } catch (err) {
-    //   console.log(err)
-    // }
   }
 
   return (
@@ -127,12 +127,12 @@ const OpenCamera = () => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
                 <View>
-                  {/* <Ionicons
+                  <Ionicons
                     name="ios-trash"
                     size={32}
                     style={styles.trash}
                     onPress={() => setImg("")}
-                  /> */}
+                  />
                 </View>
                 <Image
                   source={{ uri: img.uri }}
