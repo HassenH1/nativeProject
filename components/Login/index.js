@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Button } from 'react-native-elements';
-
+import { url } from '../../ngrok/index'
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -11,6 +11,34 @@ const Login = (props) => {
     email: "",
     password: ""
   })
+  const [error, setError] = useState("")
+
+  handleSubmit = async () => {
+    if (input.email === "" || input.password === "") {
+      setError("All Fields Must be Completed")
+      setTimeout(() => {
+        setError("")
+        clearTimeout()
+      }, 5000)
+      return
+    }
+
+    try {
+      const response = await fetch(`${url}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(input)
+      })
+      const user = await response.json()
+      dispatch({ type: "ADDING", payload: input })
+      props.navigation.navigate("tabs")
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <KeyboardAvoidingView
@@ -33,6 +61,10 @@ const Login = (props) => {
           </View>
 
           <View>
+            <Text style={{
+              color: "red",
+              textAlign: "center"
+            }}>{error}</Text>
             <TextInput
               placeholder="Email"
               style={styles.input}
@@ -56,7 +88,7 @@ const Login = (props) => {
             <Button
               title="Submit"
               style={styles.btn}
-              onPress={() => console.log("clicked")}
+              onPress={() => handleSubmit()}
             />
           </View>
 
