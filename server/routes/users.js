@@ -20,7 +20,7 @@ router.post('/login', async (req, res, next) => {
     console.log(get, "<----------------------------------get the user here?")
     if (get === null) {
       res.status(400).send({
-        message: 'field cannot be empty!'
+        message: 'Cannot find user!'
       });
       return
     } else {

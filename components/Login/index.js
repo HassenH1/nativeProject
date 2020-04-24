@@ -37,14 +37,14 @@ const Login = (props) => {
       const user = await response.json()
       console.log(user)
       if(user.message){
-        setError("no user was found")
+        setError(user.message)
         setTimeout(() => {
           setError("")
           clearTimeout()
         }, 5000)
         return
       } 
-      
+
       dispatch({ type: "ADDING", payload: user })
       props.navigation.navigate("tabs")
     } catch (err) {
