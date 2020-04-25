@@ -19,6 +19,9 @@ export default List
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight + 20
+    flex: 1,
+    marginTop: Constants.statusBarHeight + 20,
+    width: 10,
+    flexDirection: "row",
   },
 })

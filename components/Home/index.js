@@ -32,32 +32,18 @@ const Home = () => {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <View>
-        <FlatList
-          data={posts}
-          renderItem={({ item }) => <List eachPost={item} />}
-          keyExtractor={item => item._id}
-          onRefresh={() => getPosts()}
-          refreshing={loading}
-          style={{
-            // backgroundColor: "orange",
-            // marginHorizontal: 10,
-            // width: 100
-            flexDirection: "column",
-            // flexWrap: "wrap"
-          }}
-        />
-      </View>
+    <View>
+      <FlatList
+        data={posts}
+        renderItem={({ item }) => <List eachPost={item} />}
+        keyExtractor={item => item._id}
+        onRefresh={() => getPosts()}
+        refreshing={loading}
+      />
     </View>
   )
 }
 
 export default Home
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-})
+const styles = StyleSheet.create({})
