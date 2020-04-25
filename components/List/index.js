@@ -8,7 +8,7 @@ const List = (props) => {
   return (
     <View style={styles.container}>
       <Image
-        style={{ width: 250 / 2, height: 300 / 2, borderWidth: 1 }}
+        style={{ width: 250 / 2, height: 300 / 2, borderWidth: 1, borderColor: "whitesmoke" }}
         source={{ uri: props.eachPost.image}} 
       />
       <Text>{props.eachPost.name}</Text>
@@ -20,11 +20,8 @@ export default List
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: Constants.statusBarHeight + 10,
-    marginHorizontal: WIDTH - 300
+    marginTop: Constants.statusBarHeight + 20,
+    width: 10,
+    backgroundColor: "red"
   },
 })

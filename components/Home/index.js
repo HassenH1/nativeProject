@@ -37,6 +37,7 @@ const Home = () => {
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
+        style={{ width: 100, backgroundColor: "yellow"}}
       />
     </View>
   )
@@ -48,6 +49,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    flexDirection: "row",
+    flexWrap: "wrap"
   //   alignItems: 'center',
   //   justifyContent: 'center',
   },
