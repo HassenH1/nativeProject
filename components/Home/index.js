@@ -51,7 +51,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: "row",
     flexWrap: "wrap"
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
   },
 })
