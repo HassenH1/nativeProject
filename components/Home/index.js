@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { url } from '../../ngrok/index'
+import List from "../List"
 
 const Home = () => {
   const [posts, setPosts] = useState()
@@ -28,7 +29,11 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Home Component</Text>
+      <FlatList
+        data={posts}
+        renderItem={({ eachPost }) => <List each={eachPost}/>}
+        keyExtractor={eachPost => eachPost.id}
+      />
     </View>
   )
 }
