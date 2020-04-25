@@ -4,11 +4,14 @@ import { StyleSheet, Text, View } from 'react-native'
 const List = (props) => {
   return (
     <View>
-      <Text>{console.log(props)}</Text>
+      <Text>{console.log(props.eachPost.name, "<===============from the list side")}</Text>
+      <Text>{props.eachPost.name}</Text>
     </View>
   )
 }
 
 export default List
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+})

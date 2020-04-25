@@ -18,7 +18,6 @@ const Home = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data, "<------------the data is?")
         setPosts(data)
       })
   }
@@ -29,10 +28,11 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
+      {console.log(posts)}
       <FlatList
         data={posts}
-        renderItem={({ eachPost }) => <List each={eachPost}/>}
-        keyExtractor={eachPost => eachPost.id}
+        renderItem={({ item }) => <List eachPost={item}/>}
+        keyExtractor={item => item.id}
       />
     </View>
   )
