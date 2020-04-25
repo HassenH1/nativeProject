@@ -1,7 +1,5 @@
-
 const initialState = {
-  user: "",
-  posts: ""
+  user: ""
 }
 
 export const reducer = (state = initialState, action) => {
@@ -30,17 +28,6 @@ export const reducer = (state = initialState, action) => {
         })
         .catch((err) => {
           console.log(err)
-        })
-    case "GET_ALL_POSTS":
-      fetch(`${url}/post/get`, {
-        method: "GET"
-      })
-        .then(res => res.json())
-        .then(data => {
-          return {
-            ...state,
-            posts: data
-          }
         })
   }
   return state

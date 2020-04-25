@@ -5,7 +5,7 @@ const Post = require("../models/Products")
 
 router.get('/get', async (req, res, next) => {
   const getPosts = await Post.find({})
-  console.log(getPosts, "<---------------------whats inside of this here?")
+  res.send(getPosts)
 })
 
 router.post('/', async (req, res, next) => {
