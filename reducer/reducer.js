@@ -1,5 +1,6 @@
 const initialState = {
-  user: ""
+  user: "",
+  loading: true
 }
 
 export const reducer = (state = initialState, action) => {
@@ -29,6 +30,11 @@ export const reducer = (state = initialState, action) => {
         .catch((err) => {
           console.log(err)
         })
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload
+      }
   }
   return state
 }

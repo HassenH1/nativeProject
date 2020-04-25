@@ -8,17 +8,19 @@ const Home = () => {
   const [posts, setPosts] = useState()
   const dispatch = useDispatch()
 
-  const { user } = useSelector((state) => { /////////////////////< accesses the redux state
+  const { user, loading } = useSelector((state) => { /////////////////////< accesses the redux state
     return state
   })
 
-  getPosts = async() => {
+  const getPosts = async() => {
+    dispatch({ type: "SET_LOADING", payload: true})
     const posts = await fetch(`${url}/post/get`, {
       method: "GET"
     })
       .then(res => res.json())
       .then(data => {
         setPosts(data)
+        dispatch({ type: "SET_LOADING", payload: false})
       })
   }
 
@@ -32,7 +34,9 @@ const Home = () => {
       <FlatList
         data={posts}
         renderItem={({ item }) => <List eachPost={item}/>}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item._id}
+        onRefresh={() => getPosts()}
+        refreshing={loading}
       />
     </View>
   )
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
   },
 })
