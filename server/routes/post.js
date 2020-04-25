@@ -3,8 +3,9 @@ var router = express.Router();
 const Users = require("../models/User")
 const Post = require("../models/Products")
 
-router.get('/get', (req, res, next) => {
-  res.send("get route")
+router.get('/get', async (req, res, next) => {
+  const getPosts = await Post.find({})
+  console.log(getPosts, "<---------------------whats inside of this here?")
 })
 
 router.post('/', async (req, res, next) => {

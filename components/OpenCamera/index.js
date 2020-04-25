@@ -106,13 +106,14 @@ const OpenCamera = (props) => {
         })
       })
       const dJson = await d.json()
-      if(dJson.message === "success"){
+      if (dJson.message === "success") {
         setDBImage("")
         setDesc("")
         setImg("")
         setName("")
         setPrice("")
         props.navigation.navigate("tabs")
+        Alert.alert("Item successfully Posted!")
       } else {
         setError("something went wrong")
         setTimeout(() => {
@@ -131,7 +132,6 @@ const OpenCamera = (props) => {
       <View style={styles.heading}>
         <Text style={{ fontWeight: "bold", fontSize: 40 }}>Post an Item</Text>
       </View>
-
       {
         img !== ""
           ? <KeyboardAvoidingView
@@ -140,7 +140,7 @@ const OpenCamera = (props) => {
           >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={{ flex: 1, justifyContent: "space-evenly", alignItems: "center" }}>
-                  <Text style={{color: "red", textAlign: "center"}}>{error}</Text>
+                <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
                 <View>
                   <Ionicons
                     name="ios-trash"
