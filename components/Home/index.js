@@ -43,13 +43,14 @@ const Home = () => {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={styles.container}>
       <FlatList
         data={posts}
         renderItem={({ item }) => renderPosts(item)}
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
+        horizontal={true}
       />
     </View>
   )
@@ -58,8 +59,8 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#fff",
-  // },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
 })
