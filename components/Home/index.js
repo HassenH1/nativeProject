@@ -39,14 +39,7 @@ const Home = () => {
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
-        style={{
-          flex: 1,
-          backgroundColor: '#fff',
-          // alignItems: 'center',
-          // justifyContent: 'center',
-        }}
       />
-      <Text>center?</Text>
     </View>
   )
 }
