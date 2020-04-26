@@ -33,7 +33,7 @@ const Home = () => {
 
   const renderPosts = (item) => {
     return (
-      <View style={{ flexDirection: "row", margin: 10, marginBottom: 0 }}>
+      <View style={{ width: WIDTH - 250 }}>
         <Image
           source={{ uri: item.image }}
           style={{ width: "32%", height: 100, borderWidth: 1, borderColor: "whitesmoke" }}
@@ -46,7 +46,8 @@ const Home = () => {
     <View style={styles.container}>
       <FlatList
         data={posts}
-        renderItem={({ item }) => renderPosts(item)}
+        // renderItem={({ item }) => renderPosts(item)}
+        renderItem={({ item }) => <List eachPost={item}/>}
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
