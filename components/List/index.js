@@ -6,7 +6,7 @@ const WIDTH = Dimensions.get("window").width
 
 const List = (props) => {
   return (
-    <TouchableOpacity onPress={() => console.log("pressed")} style={{ backgroundColor: "red"}}>
+    <TouchableOpacity onPress={() => console.log("pressed")}>
       <Image
         style={{ width: 220 / 2, height: 300 / 2, borderWidth: 1, borderColor: "whitesmoke", marginHorizontal: 8, marginTop: Constants.statusBarHeight }}
         source={{ uri: props.eachPost.image }}
@@ -17,6 +17,4 @@ const List = (props) => {
 
 export default List
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({})

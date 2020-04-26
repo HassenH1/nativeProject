@@ -43,7 +43,8 @@ const Home = () => {
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
-        horizontal={true}
+        // horizontal={true}
+        numColumns={3}
       />
     </View>
   )
@@ -53,7 +54,7 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    backgroundColor: "orange",
+    flex: 1,
+    backgroundColor: "#fff",
   },
 })
