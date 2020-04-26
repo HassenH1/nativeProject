@@ -31,19 +31,11 @@ const Home = () => {
     getPosts()
   }, [])
 
-  const renderPosts = (item) => {
-    return (
-      <View style={{ width: WIDTH - 250 }}>
-        <Image
-          source={{ uri: item.image }}
-          style={{ width: "32%", height: 100, borderWidth: 1, borderColor: "whitesmoke" }}
-        />
-      </View>
-    )
-  }
-
   return (
     <View style={styles.container}>
+      <View style={{ marginTop: Constants.statusBarHeight}}>
+        <Text>Header here!!</Text>
+      </View>
       <FlatList
         data={posts}
         // renderItem={({ item }) => renderPosts(item)}
@@ -61,7 +53,7 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    // flex: 1,
+    backgroundColor: "orange",
   },
 })
