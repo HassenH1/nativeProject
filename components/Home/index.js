@@ -48,9 +48,8 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'red',
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection:'row'
   },
 })
