@@ -33,21 +33,17 @@ const Home = () => {
 
   const renderPosts = (item) => {
     return (
-      <View style={{ flexDirection: "row"}}>
+      <View style={{ flexDirection: "row", margin: 10, marginBottom: 0 }}>
         <Image
           source={{ uri: item.image }}
-          style={{ width: 220 / 2, height: 300 / 2, borderWidth: 1, borderColor: "whitesmoke" }}
+          style={{ width: "35%", height: 100, borderWidth: 1, borderColor: "whitesmoke" }}
         />
-
-        {/* <View>
-          <Text>{item.name}</Text>
-        </View> */}
       </View>
     )
   }
 
   return (
-    <View style={{ flex: 1}}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <FlatList
         data={posts}
         renderItem={({ item }) => renderPosts(item)}
