@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Dimensions, Image } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { url } from '../../ngrok/index'
 import List from "../List"
@@ -32,15 +32,14 @@ const Home = () => {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => <List eachPost={item} />}
-        keyExtractor={item => item._id}
-        onRefresh={() => getPosts()}
-        refreshing={loading}
-      />
-    </View>
+    <FlatList
+      data={posts}
+      renderItem={({ item }) => <List eachPost={item} />}
+      keyExtractor={item => item._id}
+      onRefresh={() => getPosts()}
+      refreshing={loading}
+      style={styles.container}
+    /> 
   )
 }
 
@@ -48,8 +47,9 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'red',
     flex: 1,
-    flexDirection:'row'
+    backgroundColor: "#fff",
+    // with: WIDTH - 250,
+    flexDirection: "row"
   },
 })
