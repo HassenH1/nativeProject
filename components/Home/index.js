@@ -31,25 +31,39 @@ const Home = () => {
     getPosts()
   }, [])
 
+  const renderPosts = (item) => {
+    return (
+      <View style={{ flexDirection: "row"}}>
+        <Image
+          source={{ uri: item.image }}
+          style={{ width: 220 / 2, height: 300 / 2, borderWidth: 1, borderColor: "whitesmoke" }}
+        />
+
+        {/* <View>
+          <Text>{item.name}</Text>
+        </View> */}
+      </View>
+    )
+  }
+
   return (
-    <FlatList
-      data={posts}
-      renderItem={({ item }) => <List eachPost={item} />}
-      keyExtractor={item => item._id}
-      onRefresh={() => getPosts()}
-      refreshing={loading}
-      style={styles.container}
-    /> 
+    <View style={{ flex: 1}}>
+      <FlatList
+        data={posts}
+        renderItem={({ item }) => renderPosts(item)}
+        keyExtractor={item => item._id}
+        onRefresh={() => getPosts()}
+        refreshing={loading}
+      />
+    </View>
   )
 }
 
 export default Home
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    // with: WIDTH - 250,
-    flexDirection: "row"
-  },
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: "#fff",
+  // },
 })
