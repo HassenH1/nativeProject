@@ -12,6 +12,7 @@ import { Provider } from 'react-redux'
 import { reducer } from './reducer/reducer'
 import Profile from './components/Profile';
 import Setting from './components/Setting';
+import Showpage from './components/Showpage';
 
 const Stack = createStackNavigator()
 
@@ -68,6 +69,14 @@ export default function App() {
             options={{
               headerShown: true,
               headerBackTitle: "Profile"
+            }}
+          />
+
+          <Stack.Screen
+            name="showpage"
+            component={Showpage}
+            options={{
+              headerShown: false
             }}
           />
 
