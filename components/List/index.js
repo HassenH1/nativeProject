@@ -6,7 +6,7 @@ const WIDTH = Dimensions.get("window").width
 
 const List = (props) => {
   return (
-    <TouchableOpacity onPress={() => console.log("pressed")}>
+    <TouchableOpacity onPress={() => console.log("pressed")} onLongPress={() => console.log("long press")}>
       <Image
         style={{ width: 220 / 2, height: 300 / 2, borderWidth: 1, borderColor: "whitesmoke", marginHorizontal: 8, marginTop: Constants.statusBarHeight }}
         source={{ uri: props.eachPost.image }}
