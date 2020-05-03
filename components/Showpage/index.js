@@ -5,7 +5,7 @@ const Showpage = (props) => {
   return (
     <View style={styles.container}>
       <Text>Show page here</Text>
-      <Text>{props.showing.name}</Text>
+      {/* <Text>{props.showing.name}</Text> */}
     </View>
   )
 }

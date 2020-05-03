@@ -6,11 +6,17 @@ import Showpage from '../Showpage'
 const WIDTH = Dimensions.get("window").width
 
 const List = (props) => {
+  const { navigation, eachPost } = props
+
+  const handlePress = () => {
+    navigation.navigate("showpage")
+  }
+
   return (
-    <TouchableOpacity onPress={() => props.navigation.navigate("showpage")} onLongPress={() => console.log("long press")}>
+    <TouchableOpacity onPress={() => handlePress()} onLongPress={() => console.log("long press")}>
       <Image
-        style={{ width: 220 / 2, height: 300 / 2, borderWidth: 1, borderColor: "whitesmoke", marginHorizontal: 8, marginTop: Constants.statusBarHeight }}
-        source={{ uri: props.eachPost.image }}
+        style={{ width: 220 / 2, height: 300 / 2, borderWidth: 1, borderColor: "black", marginHorizontal: 8, marginTop: 10, borderRadius: 5 }}
+        source={{ uri: eachPost.image }}
       />
     </TouchableOpacity>
   )

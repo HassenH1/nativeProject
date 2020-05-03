@@ -7,7 +7,7 @@ import Constants from 'expo-constants'
 
 const WIDTH = Dimensions.get("window").width
 
-const Home = () => {
+const Home = (props) => {
   const [posts, setPosts] = useState()
   const dispatch = useDispatch()
 
@@ -20,11 +20,9 @@ const Home = () => {
     const posts = await fetch(`${url}/post/get`, {
       method: "GET"
     })
-      .then(res => res.json())
-      .then(data => {
-        setPosts(data)
-        dispatch({ type: "SET_LOADING", payload: false })
-      })
+    const data = await posts.json()
+    setPosts(data)
+    dispatch({ type: "SET_LOADING", payload: false })
   }
 
   useEffect(() => {
@@ -39,12 +37,13 @@ const Home = () => {
       <FlatList
         data={posts}
         // renderItem={({ item }) => renderPosts(item)}
-        renderItem={({ item }) => <List eachPost={item}/>}
+        renderItem={({ item }) => <List {...props} eachPost={item}/>}
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
         // horizontal={true}
         numColumns={3}
+        style={{ marginTop: 18 }}
       />
     </View>
   )
@@ -55,6 +54,7 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
+    backgroundColor: "whitesmoke",
   },
 })

@@ -1,1 +1,1 @@
-export const url = "http://d24a2313.ngrok.io"
+export const url = "http://bf8adc97.ngrok.io"

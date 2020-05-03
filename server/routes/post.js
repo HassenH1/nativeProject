@@ -4,6 +4,7 @@ const Users = require("../models/User")
 const Post = require("../models/Products")
 
 router.get('/get', async (req, res, next) => {
+  console.log("why is this not running?")
   const getPosts = await Post.find({})
   res.send(getPosts)
 })
