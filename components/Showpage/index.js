@@ -2,11 +2,11 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 const Showpage = ({ route }) => {
-  console.log(route, "<-----------------route?")
+  const { params } = route
   return (
     <View style={styles.container}>
       <Text>Show page here</Text>
-      {/* <Text>{props.showing.name}</Text> */}
+      <Text>{params.name}</Text>
     </View>
   )
 }
