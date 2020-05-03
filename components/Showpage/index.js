@@ -1,7 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const Showpage = (props) => {
+const Showpage = ({ route }) => {
+  console.log(route, "<-----------------route?")
   return (
     <View style={styles.container}>
       <Text>Show page here</Text>

@@ -9,7 +9,7 @@ const List = (props) => {
   const { navigation, eachPost } = props
 
   const handlePress = () => {
-    navigation.navigate("showpage")
+    navigation.navigate("showpage", { passed: { ...eachPost }})
   }
 
   return (
