@@ -15,7 +15,7 @@ const Login = (props) => {
   })
   const [error, setError] = useState("")
 
-  handleSubmit = async () => {
+  const handleSubmit = async () => {
     if (input.email === "" || input.password === "") {
       setError("All Fields Must be Completed")
       setTimeout(() => {

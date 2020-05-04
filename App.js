@@ -76,8 +76,10 @@ export default function App() {
             name="showpage"
             component={Showpage}
             options={{
-              headerShown: false,
-              headerBackTitle: "Home"
+              headerShown: true,
+              headerTitle: "",
+              headerBackTitle: "",
+              headerTransparent: true
             }}
           />
 
