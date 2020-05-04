@@ -36,13 +36,12 @@ const Home = (props) => {
       </View>
       <FlatList
         data={posts}
-        // renderItem={({ item }) => renderPosts(item)}
         renderItem={({ item }) => <List {...props} eachPost={item}/>}
         keyExtractor={item => item._id}
         onRefresh={() => getPosts()}
         refreshing={loading}
-        // horizontal={true}
         numColumns={3}
+        inverted={true}
         style={{ marginTop: 18 }}
       />
     </View>

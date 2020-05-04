@@ -4,14 +4,13 @@ const Users = require("../models/User")
 const Post = require("../models/Products")
 
 router.get('/get', async (req, res, next) => {
-  console.log("why is this not running?")
   const getPosts = await Post.find({})
   res.send(getPosts)
 })
 
 router.post('/', async (req, res, next) => {
-  console.log(req.body.email)
   const foundUser = await Users.findOne({ email: req.body.email })
+  console.log(req.body, "<-----------------------------where is this at?")
   const product = await Post.create({
     image: req.body.image,
     name: req.body.name,

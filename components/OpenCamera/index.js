@@ -100,9 +100,9 @@ const OpenCamera = (props) => {
         body: JSON.stringify({
           email: user.email,
           image: dbImage,
-          name,
-          desc,
-          price
+          name: name,
+          desc: desc,
+          price: price
         })
       })
       const dJson = await d.json()
