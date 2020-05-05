@@ -179,6 +179,7 @@ const OpenCamera = (props) => {
                     value={desc}
                     style={{ height: 140, ...styles.input }}
                   />
+                  {console.log(desc)}
                 </View>
                 <View>
                   <Button

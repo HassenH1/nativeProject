@@ -41,7 +41,7 @@ const Home = (props) => {
         onRefresh={() => getPosts()}
         refreshing={loading}
         numColumns={3}
-        inverted={true}
+        // inverted={true}
         style={{ marginTop: 18 }}
       />
     </View>
@@ -53,7 +53,6 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
     backgroundColor: "whitesmoke",
   },
 })

@@ -31,7 +31,7 @@ const Showpage = ({ route }) => {
           />
 
           <View>
-            <Text style={{ fontSize: 30 }}>{params.desc}</Text>
+            <Text style={{ fontSize: 20, marginTop: 15 }}>{params.description}</Text>
           </View>
 
         </View>

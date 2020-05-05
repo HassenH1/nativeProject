@@ -10,11 +10,10 @@ router.get('/get', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const foundUser = await Users.findOne({ email: req.body.email })
-  console.log(req.body, "<-----------------------------where is this at?")
   const product = await Post.create({
     image: req.body.image,
     name: req.body.name,
-    desc: req.body.desc,
+    description: req.body.desc,
     price: req.body.price
   })
   foundUser.post.push(product)
