@@ -10,23 +10,24 @@ const Selling = () => {
     return state
   })
 
-  const posted = () => {
-    user?.posted?.map((elem, i) => {
-      return(
-        <ListItem 
-          key={i}
-          title={elem}
-          bottomDivider
-        />
-      )
+  const mapping = () => {
+    const items = user?.post?.map((elem, i) => {
+      <ListItem 
+        key={i}
+        title={elem}
+        bottomDivider
+      />
     })
+    return items
   }
 
   return (
     <View style={styles.container}>
       <Text>Selling here</Text>
       {console.log(user, "<----------------everything should alread be here?")}
-      {posted}
+      <View>
+        {mapping()}
+      </View>
     </View>
   )
 }
