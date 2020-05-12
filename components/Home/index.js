@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { url } from '../../ngrok/index'
 import List from "../List"
 import Constants from 'expo-constants'
+import Header from '../Header'
 
 const WIDTH = Dimensions.get("window").width
 
@@ -31,8 +32,8 @@ const Home = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ marginTop: Constants.statusBarHeight}}>
-        <Text>Header here!!</Text>
+      <View style={{ marginTop: Constants.statusBarHeight - 45}}>
+        <Header />
       </View>
       <FlatList
         data={posts}

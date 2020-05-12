@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native'
 import { url } from '../../ngrok/index'
 import { useSelector, useDispatch } from 'react-redux'
 import { ListItem } from 'react-native-elements'
+import Constants from 'expo-constants'
 
 
 const Selling = () => {
@@ -10,24 +11,22 @@ const Selling = () => {
     return state
   })
 
-  const mapping = () => {
-    const items = user?.post?.map((elem, i) => {
-      <ListItem 
-        key={i}
-        title={elem}
-        bottomDivider
-      />
-    })
-    return items
-  }
+  const items = user?.post?.map((elem, i) => {
+    return (
+      <Text style={styles.items}>
+        {elem}
+      </Text>
+    )
+  })
+
 
   return (
     <View style={styles.container}>
-      <Text>Selling here</Text>
-      {console.log(user, "<----------------everything should alread be here?")}
-      <View>
-        {mapping()}
-      </View>
+      <ScrollView style={{ marginTop: Constants.statusBarHeight, }}>
+        <View>
+          {items}
+        </View>
+      </ScrollView>
     </View>
   )
 }
@@ -41,4 +40,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  items: {
+    borderBottomColor: 'black',
+    borderWidth: 1,
+    marginTop: 5
+  }
 })
